@@ -1,0 +1,249 @@
+From 1dabc055f56b4b4f763adec05b63bcc7b406e14a Mon Sep 17 00:00:00 2001
+From: Inigo Mediavilla <imediavilla@viadeoteam.com>
+Date: Thu, 9 Oct 2014 00:24:13 +0200
+Subject: [PATCH] First modifications
+
+---
+ _config.yml                                   | 10 +++++
+ _posts/2014-10-08-first_mesos_framework.es.md | 55 +++++++++++++++++++++++++++
+ _posts/2014-10-08-first_mesos_framework.md    | 55 +++++++++++++++++++++++++++
+ _posts/first_mesos_framework.es.md            | 55 ---------------------------
+ about.md                                      |  6 ++-
+ 5 files changed, 124 insertions(+), 57 deletions(-)
+ create mode 100644 _posts/2014-10-08-first_mesos_framework.es.md
+ create mode 100644 _posts/2014-10-08-first_mesos_framework.md
+ delete mode 100644 _posts/first_mesos_framework.es.md
+
+diff --git a/_config.yml b/_config.yml
+index a521a73..dfe5a53 100644
+--- a/_config.yml
++++ b/_config.yml
+@@ -65,6 +65,7 @@ sass:
+ gems:
+   - jemoji # Emoji please!
+   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
++  - jekyll-multiple-languages
+ 
+ # Exclude these files from your production _site
+ exclude:
+@@ -72,3 +73,12 @@ exclude:
+     - Gemfile.lock
+     - LICENSE
+     - README.md
++
++# Multiple languages
++
++languages:          ['en', 'es']
++
++# If not config, the first of languages will be the default
++language_default:   'en'
++
++fill_default_content: true
+diff --git a/_posts/2014-10-08-first_mesos_framework.es.md b/_posts/2014-10-08-first_mesos_framework.es.md
+new file mode 100644
+index 0000000..c32161f
+--- /dev/null
++++ b/_posts/2014-10-08-first_mesos_framework.es.md
+@@ -0,0 +1,55 @@
++---
++layout: post
++title: Cómo desarrollar tu primer aplicación distribuida con Mesos 
++---
++
++Como desarrolladores muchos nos hemos encontrado en algún momento dado
++con la necesidad de construir una applicación distribuida ya sea para
++aprovechar la potencia de procesamiento de un cluster, para tener un
++sistema de recuperación automático o bien porque necesitamos trabajar
++con sistemas que se encuentran repartidos en distintos servidores en
++un cluster.
++
++Mesos es un gestor que permite ejecutar de manera sencilla
++applicaciones distribuidas
++*¿Qué es Mesos?*
++
++Utilizaremos el ejemplo de una aplicación distribuida (de tratamiento
++de datos en paralelo) para introducir los conceptos básicos de Mesos
++*ejemplo*
++
++*Problemas al construir SISDIS* de reinventar la rueda:
++
++- En cuanto hay varias aplicaciones que se ejecutan en el cluster se
++  plantea el problema de cómo se pueden *repartir los recursos*
++- Cada vez hay que definir un sistema de *tolerancia a fallos* en
++  caso de fallo
++- Cada vez es necesario definir una manera apropriada de ejecutar
++  tareas de forma remota en una máquina específica (*ejecución remota*)
++- El Planificador no puede ser un cuello de botella
++
++*Cómo hacer esto con Mesos*
++
++Mesos es un planificador o gestor de cluster que se ocupa de
++proporcionar tolerancia a fallos, repartición justa de recursos entre
++aplicaciones y ejecución remota de tareas para aplicaciones que
++necesitan ejecutarse en un cluster. Para acceder a estas
++funcionalidades las aplicaciones sólo necesitan implementar dos
++interfaces definidas en la API de Mesos conocidas como ejecutor y
++planificador (o scheduler)
++
++*¿Como funciona Mesos?*
++
++Mecanismo de ofertas
++
++
++*Ejemplo: mi primer framework*
++
++
++![_config.yml]({{ site.baseurl }}/images/config.png)
++
++
++[Viadeo Profile](http://www.viadeo.com/profile/002lz309wldwqir)
++[LinkedIn Profile](https://www.linkedin.com/pub/i%C3%B1igo-mediavilla/3a/700/276)
++
++
+diff --git a/_posts/2014-10-08-first_mesos_framework.md b/_posts/2014-10-08-first_mesos_framework.md
+new file mode 100644
+index 0000000..c32161f
+--- /dev/null
++++ b/_posts/2014-10-08-first_mesos_framework.md
+@@ -0,0 +1,55 @@
++---
++layout: post
++title: Cómo desarrollar tu primer aplicación distribuida con Mesos 
++---
++
++Como desarrolladores muchos nos hemos encontrado en algún momento dado
++con la necesidad de construir una applicación distribuida ya sea para
++aprovechar la potencia de procesamiento de un cluster, para tener un
++sistema de recuperación automático o bien porque necesitamos trabajar
++con sistemas que se encuentran repartidos en distintos servidores en
++un cluster.
++
++Mesos es un gestor que permite ejecutar de manera sencilla
++applicaciones distribuidas
++*¿Qué es Mesos?*
++
++Utilizaremos el ejemplo de una aplicación distribuida (de tratamiento
++de datos en paralelo) para introducir los conceptos básicos de Mesos
++*ejemplo*
++
++*Problemas al construir SISDIS* de reinventar la rueda:
++
++- En cuanto hay varias aplicaciones que se ejecutan en el cluster se
++  plantea el problema de cómo se pueden *repartir los recursos*
++- Cada vez hay que definir un sistema de *tolerancia a fallos* en
++  caso de fallo
++- Cada vez es necesario definir una manera apropriada de ejecutar
++  tareas de forma remota en una máquina específica (*ejecución remota*)
++- El Planificador no puede ser un cuello de botella
++
++*Cómo hacer esto con Mesos*
++
++Mesos es un planificador o gestor de cluster que se ocupa de
++proporcionar tolerancia a fallos, repartición justa de recursos entre
++aplicaciones y ejecución remota de tareas para aplicaciones que
++necesitan ejecutarse en un cluster. Para acceder a estas
++funcionalidades las aplicaciones sólo necesitan implementar dos
++interfaces definidas en la API de Mesos conocidas como ejecutor y
++planificador (o scheduler)
++
++*¿Como funciona Mesos?*
++
++Mecanismo de ofertas
++
++
++*Ejemplo: mi primer framework*
++
++
++![_config.yml]({{ site.baseurl }}/images/config.png)
++
++
++[Viadeo Profile](http://www.viadeo.com/profile/002lz309wldwqir)
++[LinkedIn Profile](https://www.linkedin.com/pub/i%C3%B1igo-mediavilla/3a/700/276)
++
++
+diff --git a/_posts/first_mesos_framework.es.md b/_posts/first_mesos_framework.es.md
+deleted file mode 100644
+index c32161f..0000000
+--- a/_posts/first_mesos_framework.es.md
++++ /dev/null
+@@ -1,55 +0,0 @@
+----
+-layout: post
+-title: Cómo desarrollar tu primer aplicación distribuida con Mesos 
+----
+-
+-Como desarrolladores muchos nos hemos encontrado en algún momento dado
+-con la necesidad de construir una applicación distribuida ya sea para
+-aprovechar la potencia de procesamiento de un cluster, para tener un
+-sistema de recuperación automático o bien porque necesitamos trabajar
+-con sistemas que se encuentran repartidos en distintos servidores en
+-un cluster.
+-
+-Mesos es un gestor que permite ejecutar de manera sencilla
+-applicaciones distribuidas
+-*¿Qué es Mesos?*
+-
+-Utilizaremos el ejemplo de una aplicación distribuida (de tratamiento
+-de datos en paralelo) para introducir los conceptos básicos de Mesos
+-*ejemplo*
+-
+-*Problemas al construir SISDIS* de reinventar la rueda:
+-
+-- En cuanto hay varias aplicaciones que se ejecutan en el cluster se
+-  plantea el problema de cómo se pueden *repartir los recursos*
+-- Cada vez hay que definir un sistema de *tolerancia a fallos* en
+-  caso de fallo
+-- Cada vez es necesario definir una manera apropriada de ejecutar
+-  tareas de forma remota en una máquina específica (*ejecución remota*)
+-- El Planificador no puede ser un cuello de botella
+-
+-*Cómo hacer esto con Mesos*
+-
+-Mesos es un planificador o gestor de cluster que se ocupa de
+-proporcionar tolerancia a fallos, repartición justa de recursos entre
+-aplicaciones y ejecución remota de tareas para aplicaciones que
+-necesitan ejecutarse en un cluster. Para acceder a estas
+-funcionalidades las aplicaciones sólo necesitan implementar dos
+-interfaces definidas en la API de Mesos conocidas como ejecutor y
+-planificador (o scheduler)
+-
+-*¿Como funciona Mesos?*
+-
+-Mecanismo de ofertas
+-
+-
+-*Ejemplo: mi primer framework*
+-
+-
+-![_config.yml]({{ site.baseurl }}/images/config.png)
+-
+-
+-[Viadeo Profile](http://www.viadeo.com/profile/002lz309wldwqir)
+-[LinkedIn Profile](https://www.linkedin.com/pub/i%C3%B1igo-mediavilla/3a/700/276)
+-
+-
+diff --git a/about.md b/about.md
+index db54e4d..bc04c5e 100644
+--- a/about.md
++++ b/about.md
+@@ -4,7 +4,9 @@ title: About
+ permalink: /about/
+ ---
+ 
+-Some information about you!
++I'm a software passionate interested in everything from Functional
++programming to Distributed computing.
++
+ 
+ ### More Information
+ 
+@@ -12,4 +14,4 @@ A place to include any other types of information that you'd like to include abo
+ 
+ ### Contact me
+ 
+-[email@domain.com](mailto:email@domain.com)
+\ No newline at end of file
++[txominpelu@gmail.com](mailto:txominpelu@gmail.com)
+-- 
+1.9.1
+
