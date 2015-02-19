@@ -27,6 +27,8 @@ en el desarrollo de la mayoría de aplicaciones distribuidas.
 - El Planificador no puede ser un cuello de botella.
 - Cómo implementar el intercambio de mensajes entre distintas instancias
   de la aplicación.
+- Cómo ejecutar distintas aplicaciones en contextos diferentes sin posibilidad
+  de conflictos. (*containers*)
 
 
 Mesos facilita las tareas de gestión de los
@@ -58,6 +60,7 @@ Mecanismo de ofertas
 
 
 [Viadeo Profile](http://www.viadeo.com/profile/002lz309wldwqir)
+
 [LinkedIn Profile](https://www.linkedin.com/pub/i%C3%B1igo-mediavilla/3a/700/276)
 
 
